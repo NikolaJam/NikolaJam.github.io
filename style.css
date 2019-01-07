@@ -1,0 +1,68 @@
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  font: 16px sans-serif;
+}
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+header {
+  text-align: center;
+  background: black;
+  color: #fff;
+  padding: 10px;
+}
+
+footer {
+  padding: 10px;
+  text-align: center;
+  font-size: 11px;
+  background: black;
+  color: white;
+}
+
+.game-wrapper {
+  /* flex: auto; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #222;
+  background-image: url(https://www.wallpaperup.com/uploads/wallpapers/2013/03/24/61310/4e8c6f1fc3f0d7681aa007d95fec9dd6-1000.jpg);
+  background-size: 75%;
+  
+  
+}
+.game {
+  width: 800px;
+  height: 600px;
+  background: url(/Backgrounds/black.png);
+  animation: animate-background 2s linear infinite;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+@keyframes animate-background {
+  from {
+    background-position-y: 0px;
+     
+  }
+  to {
+    background-position-y: 256px;
+     
+  }
+}
+
+.game .player {
+  position: absolute;
+  margin-left: -25px;
+  width: 50px;
+}

@@ -1,0 +1,7 @@
+function createEnemyLaser( ) {
+ 
+  }
+
+   function updateEnemyLasers( ) {
+     
+  }

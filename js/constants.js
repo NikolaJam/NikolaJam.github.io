@@ -8,7 +8,7 @@ const GAME_HEIGHT = 600;
 const PLAYER_WIDTH = 20;
 const PLAYER_MAX_SPEED = 600.0;
 
-const LASER_MAX_SPEED = 300.0;
+const LASER_MAX_SPEED = 500.0;
 const LASER_COOLDOWN = 0.5;
 
 const ENEMIES_PER_ROW = 10;
@@ -27,6 +27,8 @@ const GAME_STATE = {
   playerY: 0,
   playerCooldown: 0,
   lasers: [],
+  laserDomRect: [],
+  enemyDomRect: [],
   enemies: [],
   enemyLasers: [],
   gameOver: false

@@ -1,11 +1,20 @@
+// import { Enemies } from "/js/enemies.js";
+// import {Laser} from "/js/laser.js";
+// import {Player} from "/js/player.js";
+
+
 function randomNum(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
- 
-  function setPosition($el, x, y) {
-    $el.style.transform = `translate(${x}px, ${y}px)`;
- 
+
+  function rectsIntersect(r1, r2) {
+    return !(r2.left > r1.right || r2.right < r1.left || r2.top > r1.bottom || r2.bottom < r1.top);
   }
+  
+  // function setPosition($el, x, y) {
+  // $el.style.transform = `translate(${x}px, ${y}px)`;
+  //
+  // }
   
   function constrain(v, min, max) {
     if (v < min) {

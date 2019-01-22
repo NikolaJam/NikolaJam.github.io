@@ -1,3 +1,9 @@
+const KEY = {
+  left: 65,
+  right: 68,
+  space: 32
+}
+
 const KEY_CODE_LEFT = 65;
 const KEY_CODE_RIGHT = 68;
 const KEY_CODE_SPACE = 32;
@@ -27,8 +33,6 @@ const GAME_STATE = {
   playerY: 0,
   playerCooldown: 0,
   lasers: [],
-  laserDomRect: [],
-  enemyDomRect: [],
   enemies: [],
   enemyLasers: [],
   gameOver: false
@@ -42,10 +46,6 @@ const SCREEN = {
     width: 20
   }
   
-  const KEY = {
-    left: 65,
-    right: 68,
-    space: 32
-  }
+  
   
   

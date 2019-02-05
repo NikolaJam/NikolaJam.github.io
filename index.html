@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Space Game</title>
+    <link rel="stylesheet" href="css/letters.css" />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Space Game</title>
-  <link rel="stylesheet" href="css/main.css">
-</head>
-
-<body>
-  <div class="wrap">
-    <!-- naslov -->
-    <header></header>  
-    <div class="game-wrapper">
-      <div class="game">
-         
+  <body>
+    <div class="wrap">
+      <header>Press ENTER to start</header>
+      <div class="game-wrapper">
+        <div class="game" id="game">
+          <div class="title" data-splitting="lines">
+            SPACE<br />
+            INVADERS
+          </div>
+          
+        </div>
+        <div class="title" id ="victory" data-splitting="lines">
+           ПОБЕДА!
+                   
+        </div>
       </div>
-      
+
+      <footer>A / D keys to move, spacebar to shoot</footer>
     </div>
-   
-    <footer>A / D keys to move, spacebar to shoot, GOD mode ON :) (No hit-testing between enemy lasers and player)</footer>
-  </div>
-  <script src="js/jquery.js"></script>
 
-  <script src="js/constants.js"></script>
-  <script src="js/functions.js"></script>
-  
-  <!-- <script src="js/laser.js"></script> -->
-  <!-- <script src="js/player.js"></script> -->
-  <!-- <script src="js/enemies.js"></script> -->
-  <script  type="module" src="js/screen.js"></script>
-</body>
+    <script src="js/spliting.js"></script>
+    <script>
+      Splitting();
+    </script>
+    <script src="js/jquery.js"></script>
+    <script src="js/constants.js"></script>
+    <script src="js/functions.js"></script>
 
+    <!-- <script src="js/laser.js"></script> -->
+    <!-- <script src="js/player.js"></script> -->
+    <!-- <script src="js/enemies.js"></script> -->
+    <script type="module" src="js/screen.js"></script>
+  </body>
 </html>

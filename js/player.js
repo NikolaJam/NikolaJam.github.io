@@ -1,46 +1,60 @@
 import { Laser } from "/js/laser.js";
 export function Player($container) {
-  this.x = GAME_WIDTH / 2;
-  this.y = GAME_HEIGHT - 50;
-  this.playerWidth = 20;
+
+  this.x = SCREEN.width / 2;
+  this.y = SCREEN.height - 50;
+  this.playerWidth = PLAYER.width;
   this.laser = new Laser();
-  // this.playerSpeed = 600.0;
+  this.playerSpeed = PLAYER.speed;
+  this.cooldown = PLAYER.cooldown;
+  GAME_STATE.playerisDead = false;
 
-  $("<img>")
-    .attr("src", "img/player-red-1.png")
-    .attr("ID", "player")
-    .addClass("player")
+  this.$avatar = $("<img>").attr("src", "img/player-red-1.png")
+    .attr("ID", "player").addClass("player")
     .appendTo($container);
-  this.$avatar = $(".player")[0];
-  this.initialize = function() {
-    this.$avatar.style.transform = `translate(${this.x}px, ${this.y}px)`;
-  };
 
-  this.updatePlayer = function(dt) {
+
+  this.initialize = function () {
+    this.$avatar.css({ "transform": `translate(${this.x}px, ${this.y}px)` });
+  }
+
+  this.constrain = (x, min, max) => {
+    if (x < min) {
+      return min;
+    } else if (x > max) {
+      return max;
+    } else {
+      return x;
+    }
+  }
+
+  this.updatePlayer = function (dt) {
+
     if (GAME_STATE.leftPressed) {
-      this.x -= 8;
-      //
+      this.x -= dt * this.playerSpeed;                     // dt *this.playerSpeed = dt*500 which means 500px per second
     }
+
     if (GAME_STATE.rightPressed) {
-      this.x += 8;
-      // dt *this.playerSpeed;      if we want to have a constant movement, no matter the machine we are using.
+      this.x += dt * this.playerSpeed;
     }
 
-    this.x = constrain(this.x, this.playerWidth, GAME_WIDTH - this.playerWidth);
-    if (GAME_STATE.spacePressed && GAME_STATE.playerCooldown <= 0) {
-      this.laser.createLaser($container, this.x, this.y);
-      GAME_STATE.playerCooldown = LASER_COOLDOWN;
+    this.x = this.constrain(this.x, this.playerWidth, SCREEN.width - this.playerWidth);
+    
+    if (GAME_STATE.spacePressed && this.cooldown <= 0) {
+      this.laser.createLaser($container, this.x, this.y)
+      this.cooldown = PLAYER.cooldown;  
     }
 
-    if (GAME_STATE.playerCooldown > 0) {
-      GAME_STATE.playerCooldown -= dt;
+    if (this.cooldown > 0) {
+      this.cooldown -= dt;
     }
-
     this.initialize();
-  };
 
-  this.destroyPlayer = function($container) {
-    $container.removeChild($avatar);
+  }
+
+  this.destroyPlayer = function () {
+    this.$avatar.css("display", "none");
+    console.log("Player destroyed");
     GAME_STATE.gameOver = true;
-  };
+  }
 }

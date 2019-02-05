@@ -1,5 +1,4 @@
-html,
-body {
+html, body {
   height: 100%;
   overflow: hidden;
 }
@@ -7,6 +6,10 @@ body {
 body {
   margin: 0;
   font: 16px sans-serif;
+}
+
+header {
+  color: yellow;
 }
 
 .wrap {
@@ -37,8 +40,8 @@ footer {
   background: #222;
   background-image: url(https://www.wallpaperup.com/uploads/wallpapers/2013/03/24/61310/4e8c6f1fc3f0d7681aa007d95fec9dd6-1000.jpg);
   background-size: 75%;
-  
 }
+
 .game {
   width: 800px;
   height: 600px;
@@ -56,39 +59,32 @@ footer {
     background-position-y: 1024px;
   }
 }
-.enemy-contain{
-  width: 800px;
-  float: left;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-  .enemy {
+
+.enemy {
   position: absolute;
-  margin-left: -20px;
+  margin-left: -25px;
   margin-top: -18px;
-  width: 40px;
+  width: 50px;
 }
 
- .player {
+.player {
   position: absolute;
-  margin-left: -20px;
-  width: 40px;
+  margin-left: -30px;
+  width: 60px;
+  padding-bottom: 50px;
 }
 
-  .laser {
+.laser {
   position: absolute;
   margin-left: -2.5px;
   height: 30px;
 }
 
- .enemy-laser {
+.enemy-laser {
   position: absolute;
   margin-left: -2.5px;
   height: 20px;
-  z-index: 90;
+  
 }
 
 .congratulations {
@@ -106,29 +102,38 @@ footer {
 .game-over {
   display: none;
   position: absolute;
-  background: #6b1818;
-  color: white;
+  align-self: center;
+  top: -100;
+  background-image: linear-gradient(rgba(3, 1, 1, 0.26),rgba(241, 13, 13, 0.568),rgba(251, 255, 0, 0.582),rgba(3, 1, 1, 0.26));
+  /* background: rgba(177, 14, 14, 0.137); */
+  color: rgb(252, 252, 252);
   padding: 20px 50px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
+  border-radius: 30px;
   text-align: center;
   animation: pop-in 1s;
+  border-radius: 50px;
 }
 
 .btn {
-  border: 2px solid #36bbf5;
-  border-radius: 3px;
+  border: 2px solid #f9fd08;
+  border-radius: 15px;
+  margin-bottom: 50px;  
   box-shadow: 0 2px rgba(0, 0, 0, 0.15);
-  background: linear-gradient(
-    to bottom,
-    #fff 0%,
-    #fff 49%,
-    #f5f5f5 50%,
-    #eee 100%
-  );
-  padding: 10px 40px;
-  font: 14px sans-serif;
+  background: linear-gradient( to bottom, #fff 0%, #fff 49%, #f5f5f5 50%, #eee 100%);
+  padding: 10px 20px;
+  font: 45px sans-serif;
+  
+  
 }
+#victory{
+
+  display: none;
+  position: absolute;
+  margin: 0;
+
+}
+
 @keyframes pop-in {
   0% {
     opacity: 0;
@@ -136,6 +141,7 @@ footer {
   }
   10% {
     opacity: 1;
+    
   }
   50% {
     transform: translate(0, 30px);

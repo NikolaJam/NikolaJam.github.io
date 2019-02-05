@@ -2,19 +2,17 @@
 // import {Laser} from "/js/laser.js";
 // import {Player} from "/js/player.js";
 
+
 function randomNum(min, max) {
+  if (min === undefined) min = 0;
+  if (max === undefined) max = 1;
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function constrain(v, min, max) {
-  if (v < min) {
-    return min;
-  } else if (v > max) {
-    return max;
-  } else {
-    return v;
-  }
+function rectsIntersect(r1, r2) {
+  return !(r2.left > r1.right || r2.right < r1.left || r2.top > r1.bottom || r2.bottom < r1.top);
 }
+
 
 function rand(min, max) {
   if (min === undefined) min = 0;
@@ -23,21 +21,21 @@ function rand(min, max) {
 }
 
 function onKeyDown(e) {
-  if (e.keyCode === KEY_CODE_LEFT) {
+  if (e.keyCode === KEY.left) {
     GAME_STATE.leftPressed = true;
-  } else if (e.keyCode === KEY_CODE_RIGHT) {
+  } else if (e.keyCode === KEY.right) {
     GAME_STATE.rightPressed = true;
-  } else if (e.keyCode === KEY_CODE_SPACE) {
+  } else if (e.keyCode === KEY.space) {
     GAME_STATE.spacePressed = true;
   }
 }
 
 function onKeyUp(e) {
-  if (e.keyCode === KEY_CODE_LEFT) {
+  if (e.keyCode === KEY.left) {
     GAME_STATE.leftPressed = false;
-  } else if (e.keyCode === KEY_CODE_RIGHT) {
+  } else if (e.keyCode === KEY.right) {
     GAME_STATE.rightPressed = false;
-  } else if (e.keyCode === KEY_CODE_SPACE) {
+  } else if (e.keyCode === KEY.space) {
     GAME_STATE.spacePressed = false;
   }
 }

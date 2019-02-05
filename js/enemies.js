@@ -1,50 +1,56 @@
 import { Player } from "/js/player.js";
 import { Laser } from "/js/laser.js";
 import { EnemyLasers } from "/js/enemy-laser.js";
-
+ 
 export function Enemies() {
   this.isDead = false;
   this.x;
   this.y;
   this.$element;
-
+  this.isAlive = true;
   this.setPosition = ($element, x, y) => {
     $element.style.transform = `translate(${x}px, ${y}px)`;
-  };
+  }
+   
 
-  this.createEnemies = function($container, x, y) {
+  this.createEnemies = function ($container, x, y) {
     this.x = x;
     this.y = y;
     this.$element = document.createElement("img");
-    this.$element.src = "img/enemy-green-3.png";
+    this.$element.src = "img/alien-green.png";
     this.$element.className = "enemy";
     $container.appendChild(this.$element);
 
+     
     this.setPosition(this.$element, this.x, this.y);
-    this.enemy = {
-      x: this.x,
+    this.enemy = {                                           
+      x: this.x,                                                 
       y: this.y,
+      isAlive: this.isAlive,
       isDead: this.isDead,
-      cooldown: rand(0.5, ENEMY_COOLDOWN),
+      cooldown: rand(1, ENEMIES.cooldown),                  //random number between 1 - 10;
       $element: this.$element
     };
 
-    GAME_STATE.enemies.push(this.enemy);
-  };
-  this.initialize = function() {
+    GAME_STATE.enemies.push(this.enemy);                    
+
+  }
+  this.initialize = function () {
+
     var $game = $(".game")[0];
-    const enemySpacing =
-      (GAME_WIDTH - ENEMY_HORIZONTAL_PADDING * 2) / (ENEMIES_PER_ROW - 1);
-    for (let j = 0; j < NUMBER_OF_ROWS; j++) {
-      const y = ENEMY_VERTICAL_PADDING + j * ENEMY_VERTICAL_SPACING;
-      for (let i = 0; i < ENEMIES_PER_ROW; i++) {
-        const x = i * enemySpacing + ENEMY_HORIZONTAL_PADDING;
+    const enemySpacing = (SCREEN.width - ENEMIES.horizontalPadding * 2) / (ENEMIES.perRow - 1);
+    for (let j = 0; j < ENEMIES.numberOfRows; j++) {
+      const y = ENEMIES.verticalPadding + j * ENEMIES.verticalSpacing;
+      for (let i = 0; i < ENEMIES.perRow; i++) {
+        const x = i * enemySpacing + ENEMIES.horizontalPadding;
         this.createEnemies($game, x, y);
+
       }
     }
-  };
+  }
 
   this.updateEnemies = (dt, $container) => {
+
     const enemies = GAME_STATE.enemies;
 
     for (var i = 0; i < enemies.length; i++) {
@@ -55,27 +61,32 @@ export function Enemies() {
       const x = enemy.x + dx;
       const y = enemy.y + dy;
 
-      var $game = document.querySelector(".game");
-      if (enemy.isDead) {
-        $game.removeChild(enemy.$element);
+      var $gm = document.querySelector(".game");
+      if (!enemy.isAlive) {
+
+        $gm.removeChild(enemy.$element);
       }
-
       this.setPosition(enemy.$element, x, y);
-      enemy.cooldown -= dt;
-      this.enemyLaser = new EnemyLasers(x, y);
 
+      enemy.cooldown -= dt;
+
+      this.enemyLaser = new EnemyLasers(x, y);
+      
       if (enemy.cooldown <= 0) {
         this.enemyLaser.createEnemyLaser($container, x, y);
-        enemy.cooldown = ENEMY_COOLDOWN;
+        enemy.cooldown = ENEMIES.cooldown;
       }
       
     }
     GAME_STATE.enemies = GAME_STATE.enemies.filter(e => !e.isDead);
-  };
+  }
 
   this.destroyEnemy = ($container, enemy) => {
-    // $container.removeChild(enemy.$element);      $element is removed elsewhere, cannot remove from here. We only flag it for removal
+     
     enemy.$element.style.display = "none";
+    enemy.isAlive = false;
     enemy.isDead = true;
-  };
+  }
 }
+
+ 

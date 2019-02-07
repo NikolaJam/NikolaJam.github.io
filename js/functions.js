@@ -13,6 +13,15 @@ function rectsIntersect(r1, r2) {
   return !(r2.left > r1.right || r2.right < r1.left || r2.top > r1.bottom || r2.bottom < r1.top);
 }
 
+constrain = (x, min, max) => {
+  if (x < min) {
+    return min;
+  } else if (x > max) {
+    return max;
+  } else {
+    return x;
+  }
+}
 
 function rand(min, max) {
   if (min === undefined) min = 0;

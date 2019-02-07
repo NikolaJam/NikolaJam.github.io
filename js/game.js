@@ -2,23 +2,17 @@ import { Player } from "/js/player.js";
 import { Enemies } from "/js/enemies.js";
 
 export function Game() {
-
-  const $container = document.querySelector(".game");
+  var $container = $("#game");
 
   this.initialize = () => {
     this.player = new Player($container);
     this.enemy = new Enemies();
     this.player.initialize();
     this.enemy.initialize();
-    this.$player = document.querySelector(".player");
-  }
-
-  this.rectsIntersect = ($r1, $r2) => {
-    return !($r2.left > $r1.right || $r2.right < $r1.left || $r2.top > $r1.bottom || $r2.bottom < $r1.top);
   }
 
   this.gameOverProcedure = () => {
-    $container.innerHTML = "";
+    $container.empty();
     $("header").html("Hint: avoid the lasers!");
     $("footer").html("Press the button to restart the game");
     this.$gameOver = $("<div>").addClass("game-over").attr("id", "game-over").css("display", "block").appendTo(".game-wrapper");
@@ -34,38 +28,38 @@ export function Game() {
   this.update = () => {
     const currentTime = Date.now();
     const dt = (currentTime - GAME_STATE.lastTime) / 1000.0;
-    var $container = document.querySelector(".game");
 
-    for (var laserNumber = 0; laserNumber < GAME_STATE.lasers.length; laserNumber++) {              //vidi so filter isDead Laser?
+
+    for (var laserNumber = 0; laserNumber < GAME_STATE.lasers.length; laserNumber++) {              
+    
       for (var enemiesNumber = 0; enemiesNumber < GAME_STATE.enemies.length; enemiesNumber++) {
-
-        var $r1 = GAME_STATE.enemies[enemiesNumber].$element.getBoundingClientRect();
-        var $r2 = GAME_STATE.lasers[laserNumber].$element.getBoundingClientRect();
-
+              
+        var $r1 = GAME_STATE.enemies[enemiesNumber].$element[0].getBoundingClientRect();                  
+        var $r2 = GAME_STATE.lasers[laserNumber].$element[0].getBoundingClientRect();
         if (this.rectsIntersect($r1, $r2)) {
-          if (GAME_STATE.lasers[laserNumber].y > 1) {
-            this.player.laser.destroyLaser($container, GAME_STATE.lasers[laserNumber]);
-          }
-          this.enemy.destroyEnemy($container, GAME_STATE.enemies[enemiesNumber]);
+
+          this.player.laser.destroyElement(GAME_STATE.lasers[laserNumber]);
+          this.enemy.destroyElement(GAME_STATE.enemies[enemiesNumber]);
+          var explosion  = new Audio("sound/space-explosion.wav");
+          explosion.play();
           console.log("Intersect");
           break;
         }
       }
     }
 
-    if (GAME_STATE.playerisDead) {
-      this.player.destroyPlayer();
-      GAME_STATE.gameOver = true;
-    }
-
-    if (GAME_STATE.gameOver) {
-      this.gameOverProcedure();
-    }
-
     this.player.updatePlayer(dt);
-    this.player.laser.updateLasers(dt, $container);
+    this.player.laser.updateLasers(dt);
     this.enemy.updateEnemies(dt, $container);
     this.enemy.enemyLaser.updateEnemyLasers(dt, $container);
+
+    if (GAME_STATE.playerisDead) {
+      this.player.destroyElement();
+      var explosionPlayer  = new Audio("sound/player-explod.wav");
+      explosionPlayer.play();
+      this.gameOverProcedure();
+      return;
+    }
 
     GAME_STATE.lastTime = currentTime;
     const gameOver = window.requestAnimationFrame(this.update);
@@ -75,8 +69,10 @@ export function Game() {
       $("header").html("Press Enter to play again");
       $("#victory").css("display", "flex");
       console.log("WIN");
-      $container.innerHTML = "";
+      GAME_STATE.victory = true;
       window.cancelAnimationFrame(gameOver);
     }
   }
 }
+
+Game.prototype.rectsIntersect = rectsIntersect;

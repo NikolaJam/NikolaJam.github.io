@@ -11,6 +11,7 @@ const GAME_STATE = {
   spacePressed: false,
   playerisDead: false,
   gameOver: false,
+  victory: false,
 
   laserCooldown: 0.5,
   laserSpeed: 500.0,

@@ -7,7 +7,7 @@ export function Enemies() {
   this.createEnemies = function ($container, x, y) {
     this.x = x;
     this.y = y;
-    this.$element = $("<img>").attr("src", "img/alien-green.png").addClass("enemy").appendTo($container);
+    this.$element = $("<img>").attr("src", ENEMIES.enemy).addClass("enemy").appendTo($container);
 
     this.setPosition(this.$element, this.x, this.y);
     this.enemy = {

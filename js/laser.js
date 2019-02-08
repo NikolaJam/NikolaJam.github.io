@@ -8,7 +8,7 @@ export function Laser() {
     this.x=x;
     this.y=y;
     
-    this.$element = $("<img>").attr("src", "img/laser-red-12.png").addClass("laser").appendTo($container);
+    this.$element = $("<img>").attr("src", PLAYER.laser).addClass("laser").appendTo($container);
     this.laser = { 
       isDead: false,
       x: this.x,

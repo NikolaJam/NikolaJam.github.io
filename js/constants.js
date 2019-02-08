@@ -24,18 +24,21 @@ const GAME_STATE = {
 }
 
 const PLAYER = {
-  cooldown: 0.5,
+  laser: "img/Lasers/laser1.png",
+  cooldown: 0.7,
   width: 30,
   speed: 500.0
 }
 
 const ENEMIES = {
+  enemy: "img/Enemies/enemy1.png",
+  enemyLaser: "img/Lasers/enemyLaser0.png",
   perRow: 10,
-  numberOfRows: 3,
+  numberOfRows: 1,
   horizontalPadding: 80,
-  verticalPadding: 70,
-  verticalSpacing: 80,
-  cooldown: 10.0
+  verticalPadding: 80,
+  verticalSpacing: 60,
+  cooldown: 8.0
 }
 
 const KEY = {

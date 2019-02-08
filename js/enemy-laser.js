@@ -4,7 +4,7 @@ export function EnemyLasers(x, y) {
     this.createEnemyLaser = ($container, x, y) => {
         this.x = x;
         this.y = y;
-        this.$element = $("<img>").attr("src", "img/laser-green-5.png").addClass("enemy-laser").appendTo($container);
+        this.$element = $("<img>").attr("src", ENEMIES.enemyLaser).addClass("enemy-laser").appendTo($container);
 
         this.laser = {
             x: this.x,

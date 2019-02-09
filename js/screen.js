@@ -26,5 +26,44 @@ $(document).keypress((e) => {
     }
 });
 
+function handleEnterTouch() { 
+    $(".touch").css("display","flex");
+    if (GAME_STATE.playerisDead || GAME_STATE.enemies.length > 0 || GAME_STATE.victory) {
+        window.location.reload();
+    }
+    $("header").html("Have Fun!");
+    $("#victory").css("display", "none");
+    $game.empty();
+    screen();
+    GAME_STATE.spacePressed=true;
+    
+}
+function handleStartLeft() {
+    GAME_STATE.leftPressed = true;
+}
+function handleEndLeft() {
+    GAME_STATE.leftPressed = false;
+}
+function handleStartRight() {
+    GAME_STATE.rightPressed = true;
+}
+function handleEndRight() {
+    GAME_STATE.rightPressed = false;
+}
+function touchControls() {
+    var $leftTouch = $(".left")[0];
+    $leftTouch.addEventListener("touchstart", handleStartLeft, false);
+    $leftTouch.addEventListener("touchend", handleEndLeft, false);
+
+    var $rightTouch = $(".right")[0];
+    $rightTouch.addEventListener("touchstart", handleStartRight, false);
+    $rightTouch.addEventListener("touchend", handleEndRight, false);
+    
+    var $enterTouch = $(".game")[0];
+    $enterTouch.addEventListener("touchstart", handleEnterTouch, false);
+   
+    console.log("Touch controls active!");
+}
+touchControls();
 
 

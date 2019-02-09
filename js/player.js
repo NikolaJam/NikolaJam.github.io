@@ -19,7 +19,12 @@ export function Player($container) {
   }
 
   this.updatePlayer = function (dt) {
-
+    if (GAME_STATE.shiftPressed) {
+      PLAYER.cooldown = PLAYER.cheatCooldown;
+    }
+    if (!GAME_STATE.shiftPressed) {
+      PLAYER.cooldown = PLAYER.defaultCooldown;
+    }
     if (GAME_STATE.leftPressed) {
       this.x -= dt * this.playerSpeed;                     // dt *this.playerSpeed = dt*500 which means 500px per second
     }
@@ -27,21 +32,21 @@ export function Player($container) {
       this.x += dt * this.playerSpeed;
     }
     this.x = this.constrain(this.x, this.playerWidth, SCREEN.width - this.playerWidth);
-    
+
     if (GAME_STATE.spacePressed && this.cooldown <= 0) {
       this.laser.createLaser($container, this.x, this.y)
-      this.cooldown = PLAYER.cooldown;  
+      this.cooldown = PLAYER.cooldown;
     }
     if (this.cooldown > 0) {
       this.cooldown -= dt;
     }
-    this.initialize();
+    this.setPosition(this.$avatar, this.x, this.y);
   }
 
-  this.destroyElement = () =>{
+  this.destroyElement = () => {
     GAME_STATE.playerisDead = true;
   }
 }
 
-Player.prototype = new GameElement(); 
+Player.prototype = new GameElement();
 Player.prototype.constrain = constrain;

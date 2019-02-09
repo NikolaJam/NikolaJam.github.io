@@ -32,9 +32,14 @@ function rand(min, max) {
 function onKeyDown(e) {
   if (e.keyCode === KEY.left) {
     GAME_STATE.leftPressed = true;
-  } else if (e.keyCode === KEY.right) {
+  }
+  else if (e.keyCode === KEY.shift) {
+    GAME_STATE.shiftPressed = true;
+  }
+  else if (e.keyCode === KEY.right) {
     GAME_STATE.rightPressed = true;
-  } else if (e.keyCode === KEY.space) {
+  }
+  else if (e.keyCode === KEY.space) {
     GAME_STATE.spacePressed = true;
   }
 }
@@ -42,9 +47,16 @@ function onKeyDown(e) {
 function onKeyUp(e) {
   if (e.keyCode === KEY.left) {
     GAME_STATE.leftPressed = false;
-  } else if (e.keyCode === KEY.right) {
+  }
+  else if (e.keyCode === KEY.shift) {
+    GAME_STATE.shiftPressed = false;
+  }
+  else if (e.keyCode === KEY.right) {
     GAME_STATE.rightPressed = false;
-  } else if (e.keyCode === KEY.space) {
+  } 
+  else if (e.keyCode === KEY.space) {
     GAME_STATE.spacePressed = false;
   }
 }
+
+

@@ -5,7 +5,7 @@ const SCREEN = {
 
 const GAME_STATE = {
   lastTime: Date.now(),
-
+  shiftPressed: false,
   leftPressed: false,
   rightPressed: false,
   spacePressed: false,
@@ -26,6 +26,8 @@ const GAME_STATE = {
 const PLAYER = {
   laser: "img/Lasers/laser1.png",
   cooldown: 0.7,
+  defaultCooldown: 0.5,
+  cheatCooldown: 0.1,
   width: 30,
   speed: 500.0
 }
@@ -42,6 +44,7 @@ const ENEMIES = {
 }
 
 const KEY = {
+  shift: 16,
   left: 65,
   right: 68,
   space: 32

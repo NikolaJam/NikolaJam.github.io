@@ -5,34 +5,28 @@ html, body {
 
 body {
   width: 100%;
-  position: relative;
+  position: relative;    
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-header {
-  color: yellow;
 }
 
 .touch {
   position: absolute;
   display: none;
-  float: left;
   width: 100%;
-  height: 500px;
   z-index: 55;
 }
 
 .left {
  width: 50%;
  height: 900px;
-  background-color: rgba(255, 131, 127, 0.363);
+  background-color: rgba(255, 131, 127, 0.479);
 }
 
 .right {
    width: 50%;
    height: 900px;
-  background-color: rgba(0, 0, 255, 0.363);
+  background-color: rgba(0, 0, 255, 0.445);
 }
 
 .wrap {

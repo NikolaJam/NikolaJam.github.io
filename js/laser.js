@@ -1,8 +1,6 @@
-import { Player } from "/js/player.js";
 import { GameElement } from "/js/object.js";
 
 export function Laser() {
-  GAME_STATE.lasers.length=0;
 
   this.createLaser = ($container, x, y) => {
     this.x=x;

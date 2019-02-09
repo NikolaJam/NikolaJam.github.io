@@ -1,6 +1,6 @@
 import { EnemyLasers } from "/js/enemy-laser.js";
 import { GameElement } from "/js/object.js";
-// import { Game } from "./game";
+
 
 export function Enemies() {
 
@@ -15,15 +15,15 @@ export function Enemies() {
       y: this.y,
       isAlive: this.isAlive,
       isDead: this.isDead,
-      cooldown: rand(1, ENEMIES.cooldown),                  //random number between 1 - 10;
+      cooldown: rand(1, ENEMIES.cooldown),                  //random number of seconds for the cooldown
       $element: this.$element
     };
     GAME_STATE.enemies.push(this.enemy);
   }
 
-  this.initialize = function () {
+  this.initialize = () => {
     var $game = $(".game")[0];
-    const enemySpacing = (SCREEN.width - ENEMIES.horizontalPadding * 2) / (ENEMIES.perRow - 1);
+    const enemySpacing = (SCREEN.width - ENEMIES.horizontalPadding * 2) / (ENEMIES.perRow - 1); 
     for (let j = 0; j < ENEMIES.numberOfRows; j++) {
       const y = ENEMIES.verticalPadding + j * ENEMIES.verticalSpacing;
       for (let i = 0; i < ENEMIES.perRow; i++) {
@@ -37,8 +37,8 @@ export function Enemies() {
     const enemies = GAME_STATE.enemies;
 
     for (var i = 0; i < enemies.length; i++) {
-      const dx = Math.sin(GAME_STATE.lastTime / 500.0) * 50;
-      const dy = Math.cos(GAME_STATE.lastTime / 1500.0) * 50;
+      const dx = Math.sin(GAME_STATE.lastTime / 500.0) * 50;                           //these two functions give us the 8 pattern
+      const dy = Math.cos(GAME_STATE.lastTime / 1500.0) * 50;                         // movement of the enemies
 
       const enemy = enemies[i];
       const x = enemy.x + dx;
@@ -46,13 +46,13 @@ export function Enemies() {
       this.setPosition(enemy.$element, x, y);
 
       this.enemyLaser = new EnemyLasers();
-      enemy.cooldown -= dt;
+      enemy.cooldown -= dt;                                               //when the cooldown is over, a laser is created
       if (enemy.cooldown <= 0) {
         this.enemyLaser.createEnemyLaser($container, x, y);
-        enemy.cooldown = rand(1, ENEMIES.cooldown);
-      }
-    }
-    GAME_STATE.enemies = GAME_STATE.enemies.filter(e => !e.isDead);
+        enemy.cooldown = rand(1, ENEMIES.cooldown);                     //random number of seconds for the cooldown again
+      }                                                                 //if the first number is zero, enemies will shoot instantly
+    }                                                                   //when the game starts
+    GAME_STATE.enemies = GAME_STATE.enemies.filter(e => !e.isDead);     //remove the destroyed enemies from the logic
   }
 }
 Enemies.prototype = new GameElement();

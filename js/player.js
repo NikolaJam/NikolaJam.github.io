@@ -15,7 +15,7 @@ export function Player($container) {
     .appendTo($container);
 
   this.initialize = function () {
-    this.setPosition(this.$avatar, this.x, this.y);
+    this.setPosition(this.$avatar, this.x, this.y);         
   }
 
   this.updatePlayer = function (dt) {
@@ -23,10 +23,10 @@ export function Player($container) {
       PLAYER.cooldown = PLAYER.cheatCooldown;
     }
     if (!GAME_STATE.shiftPressed) {
-      PLAYER.cooldown = PLAYER.defaultCooldown;
+      PLAYER.cooldown = PLAYER.defaultCooldown - ((ENEMIES.numberOfRows) / 10);
     }
     if (GAME_STATE.leftPressed) {
-      this.x -= dt * this.playerSpeed;                     // dt *this.playerSpeed = dt*500 which means 500px per second
+      this.x -= dt * this.playerSpeed;                     // dt * this.playerSpeed = dt*500 which means ~ 500px per second
     }
     if (GAME_STATE.rightPressed) {
       this.x += dt * this.playerSpeed;
@@ -37,7 +37,7 @@ export function Player($container) {
       this.laser.createLaser($container, this.x, this.y)
       this.cooldown = PLAYER.cooldown;
     }
-    if (this.cooldown > 0) {
+    if (this.cooldown > 0) {                              //cooldown of 0.5 is ~ 1 laser every half a second
       this.cooldown -= dt;
     }
     this.setPosition(this.$avatar, this.x, this.y);

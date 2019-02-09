@@ -25,8 +25,8 @@ const GAME_STATE = {
 
 const PLAYER = {
   laser: "img/Lasers/laser1.png",
-  cooldown: 0.7,
-  defaultCooldown: 0.5,
+  cooldown: 0.6,                                        
+  defaultCooldown: 0.7,
   cheatCooldown: 0.1,
   width: 30,
   speed: 500.0

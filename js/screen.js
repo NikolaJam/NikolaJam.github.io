@@ -2,7 +2,7 @@ import { Game } from "/js/game.js";
 
 function screen() {
     var game = new Game();
-    setTimeout(game.initialize, 300);
+    setTimeout(game.initialize, 300);                               //so you don't get killed while the game is loading
     setTimeout(game.update, 310);
     var audio = new Audio("sound/Mighty_Eight_Bit_Ranger.mp3");
     audio.play();
@@ -13,11 +13,11 @@ function screen() {
 const $game = $(".game");
 
 $(document).keypress((e) => {
-
     if (e.which == 13) {
         if (GAME_STATE.playerisDead || GAME_STATE.enemies.length > 0 || GAME_STATE.victory) {
             window.location.reload();
         }
+
         $("header").html("Have Fun!");
         $("#victory").css("display", "none");
         $game.empty();
@@ -36,20 +36,24 @@ function handleEnterTouch() {
     $game.empty();
     screen();
     GAME_STATE.spacePressed=true;
-    
 }
+
 function handleStartLeft() {
     GAME_STATE.leftPressed = true;
 }
+
 function handleEndLeft() {
     GAME_STATE.leftPressed = false;
 }
+
 function handleStartRight() {
     GAME_STATE.rightPressed = true;
 }
+
 function handleEndRight() {
     GAME_STATE.rightPressed = false;
 }
+
 function touchControls() {
     var $leftTouch = $(".left")[0];
     $leftTouch.addEventListener("touchstart", handleStartLeft, false);
@@ -61,9 +65,7 @@ function touchControls() {
     
     var $enterTouch = $(".game")[0];
     $enterTouch.addEventListener("touchstart", handleEnterTouch, false);
-   
+
     console.log("Touch controls active!");
 }
 touchControls();
-
-

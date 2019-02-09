@@ -1,8 +1,4 @@
-// import { Enemies } from "/js/enemies.js";
-// import {Laser} from "/js/laser.js";
-// import {Player} from "/js/player.js";
-
-
+ 
 function randomNum(min, max) {
   if (min === undefined) min = 0;
   if (max === undefined) max = 1;
@@ -13,7 +9,7 @@ function rectsIntersect(r1, r2) {
   return !(r2.left > r1.right || r2.right < r1.left || r2.top > r1.bottom || r2.bottom < r1.top);
 }
 
-constrain = (x, min, max) => {
+constrain = (x, min, max) => {                      //constrains a target X between min and max, in our case the ship in the screen
   if (x < min) {
     return min;
   } else if (x > max) {

@@ -1,5 +1,5 @@
 import { GameElement } from "/js/object.js";
-export function EnemyLasers(x, y) {
+export function EnemyLasers() {
 
     this.createEnemyLaser = ($container, x, y) => {
         this.x = x;

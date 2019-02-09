@@ -41,12 +41,12 @@ export function Game() {
     console.log("GAMEOVER");
     return;
   }
-
-  this.update = () => {
-    const currentTime = Date.now();
-    const dt = (currentTime - GAME_STATE.lastTime) / 1000.0;
-   
-    for (var laserNumber = 0; laserNumber < GAME_STATE.lasers.length; laserNumber++) {
+  
+  this.update = () => {                                                 //this is the "game engine", based on requestAnimationFrame()
+    const currentTime = Date.now();                                     //everything in this function is executed ~60 times per second
+    const dt = (currentTime - GAME_STATE.lastTime) / 1000.0;            //we use delta time (time passed since last calling the function)
+                                                                        
+    for (var laserNumber = 0; laserNumber < GAME_STATE.lasers.length; laserNumber++) {  // to move everything and decrease / increase values
       for (var enemiesNumber = 0; enemiesNumber < GAME_STATE.enemies.length; enemiesNumber++) {
 
         var $r1 = GAME_STATE.enemies[enemiesNumber].$element[0].getBoundingClientRect();
@@ -76,8 +76,8 @@ export function Game() {
       return;
     }
 
-    const gameOver = window.requestAnimationFrame(this.update);
-    GAME_STATE.cancelAnimation = gameOver;
+    const gameOver = window.requestAnimationFrame(this.update);         // requestAnimationFrame is called inside update
+    GAME_STATE.cancelAnimation = gameOver;                              //it executes update ~60 times per second
 
     if (GAME_STATE.enemies.length === 0) {
       if (ENEMIES.numberOfRows === 5) {
@@ -87,7 +87,7 @@ export function Game() {
         console.log("WIN");
         GAME_STATE.victory = true;
         $container.html("");
-        window.cancelAnimationFrame(gameOver);
+        window.cancelAnimationFrame(gameOver);                          
         return;
       }
       this.roundEndProcedure();

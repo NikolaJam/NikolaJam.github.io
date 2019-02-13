@@ -8,12 +8,16 @@ const GAME_STATE = {
   shiftPressed: false,
   leftPressed: false,
   rightPressed: false,
+  left2Pressed: false,
+  right2Pressed: false,
   spacePressed: false,
+  shoot2Pressed: false,
   playerisDead: false,
+  player2Created: false,
   gameOver: false,
   victory: false,
 
-  laserCooldown: 0.5,
+ 
   laserSpeed: 500.0,
   playerX: 0,
   playerY: 0,
@@ -44,6 +48,10 @@ const ENEMIES = {
 }
 
 const KEY = {
+  num0: 96,
+  insert: 45,
+  left2: 37,
+  right2: 39,
   shift: 16,
   left: 65,
   right: 68,

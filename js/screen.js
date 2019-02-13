@@ -1,4 +1,5 @@
 import { Game } from "/js/game.js";
+import { Player2 } from "/js/player2.js";
 
 function screen() {
     var game = new Game();
@@ -12,13 +13,14 @@ function screen() {
 
 const $game = $(".game");
 
+
 $(document).keypress((e) => {
     if (e.which == 13) {
         if (GAME_STATE.playerisDead || GAME_STATE.enemies.length > 0 || GAME_STATE.victory) {
             window.location.reload();
         }
 
-        $("header").html("Have Fun!");
+        $("header").html("Press 2 for Player 2");
         $("#victory").css("display", "none");
         $game.empty();
         screen();

@@ -29,14 +29,22 @@ function onKeyDown(e) {
   if (e.keyCode === KEY.left) {
     GAME_STATE.leftPressed = true;
   }
+  if (e.keyCode === KEY.left2) {
+    GAME_STATE.left2Pressed = true;
+  }
   else if (e.keyCode === KEY.shift) {
     GAME_STATE.shiftPressed = true;
   }
   else if (e.keyCode === KEY.right) {
     GAME_STATE.rightPressed = true;
+  }else if (e.keyCode === KEY.right2) {
+    GAME_STATE.right2Pressed = true;
   }
   else if (e.keyCode === KEY.space) {
     GAME_STATE.spacePressed = true;
+  }
+  else if (e.keyCode === KEY.num0 || e.keyCode ===KEY.insert) {
+    GAME_STATE.shoot2Pressed = true;
   }
 }
 
@@ -44,14 +52,23 @@ function onKeyUp(e) {
   if (e.keyCode === KEY.left) {
     GAME_STATE.leftPressed = false;
   }
+  if (e.keyCode === KEY.left2) {
+    GAME_STATE.left2Pressed = false;
+  }
   else if (e.keyCode === KEY.shift) {
     GAME_STATE.shiftPressed = false;
   }
   else if (e.keyCode === KEY.right) {
     GAME_STATE.rightPressed = false;
   } 
+  else if (e.keyCode === KEY.right2) {
+    GAME_STATE.right2Pressed = false;
+  } 
   else if (e.keyCode === KEY.space) {
     GAME_STATE.spacePressed = false;
+  }
+  else if (e.keyCode === KEY.num0 || e.keyCode ===KEY.insert) {
+    GAME_STATE.shoot2Pressed = false;
   }
 }
 

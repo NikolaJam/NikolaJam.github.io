@@ -27,48 +27,48 @@ function rand(min, max) {
 
 function onKeyDown(e) {
   if (e.keyCode === KEY.left) {
-    GAME_STATE.leftPressed = true;
+    PLAYER.leftPressed = true;
   }
   if (e.keyCode === KEY.left2) {
-    GAME_STATE.left2Pressed = true;
+    PLAYER2.leftPressed = true;
   }
   else if (e.keyCode === KEY.shift) {
-    GAME_STATE.shiftPressed = true;
+    PLAYER.shiftPressed = true;
   }
   else if (e.keyCode === KEY.right) {
-    GAME_STATE.rightPressed = true;
+    PLAYER.rightPressed = true;
   }else if (e.keyCode === KEY.right2) {
-    GAME_STATE.right2Pressed = true;
+    PLAYER2.rightPressed = true;
   }
   else if (e.keyCode === KEY.space) {
-    GAME_STATE.spacePressed = true;
+    PLAYER.spacePressed = true;
   }
   else if (e.keyCode === KEY.num0 || e.keyCode ===KEY.insert) {
-    GAME_STATE.shoot2Pressed = true;
+    PLAYER2.spacePressed = true;
   }
 }
 
 function onKeyUp(e) {
   if (e.keyCode === KEY.left) {
-    GAME_STATE.leftPressed = false;
+    PLAYER.leftPressed = false;
   }
   if (e.keyCode === KEY.left2) {
-    GAME_STATE.left2Pressed = false;
+    PLAYER2.leftPressed = false;
   }
   else if (e.keyCode === KEY.shift) {
-    GAME_STATE.shiftPressed = false;
+    PLAYER.shiftPressed = false;
   }
   else if (e.keyCode === KEY.right) {
-    GAME_STATE.rightPressed = false;
+    PLAYER.rightPressed = false;
   } 
   else if (e.keyCode === KEY.right2) {
-    GAME_STATE.right2Pressed = false;
+    PLAYER2.rightPressed = false;
   } 
   else if (e.keyCode === KEY.space) {
-    GAME_STATE.spacePressed = false;
+    PLAYER.spacePressed = false;
   }
   else if (e.keyCode === KEY.num0 || e.keyCode ===KEY.insert) {
-    GAME_STATE.shoot2Pressed = false;
+    PLAYER2.spacePressed = false;
   }
 }
 

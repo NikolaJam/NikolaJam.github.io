@@ -1,11 +1,10 @@
 import { Game } from "/js/game.js";
-import { Player2 } from "/js/player2.js";
-
+ 
 function screen() {
     var game = new Game();
     setTimeout(game.initialize, 300);                               //so you don't get killed while the game is loading
     setTimeout(game.update, 310);
-    var audio = new Audio("sound/Mighty_Eight_Bit_Ranger.mp3");
+    var audio = new Audio("sound/Mighty_Eight_Bit_Ranger1.mp3");
     audio.play();
     window.addEventListener("keydown", onKeyDown);
     window.addEventListener("keyup", onKeyUp);

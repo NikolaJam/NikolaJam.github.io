@@ -3,16 +3,17 @@ import { GameElement } from "/js/object.js";
 export function Laser() {
 
   this.createLaser = ($container, x, y) => {
-    this.x=x;
-    this.y=y;
-    
+    this.x = x;
+    this.y = y;
+
     this.$element = $("<img>").attr("src", PLAYER.laser).addClass("laser").appendTo($container);
-    this.laser = { 
+    this.laser = {
       isDead: false,
       x: this.x,
       y: this.y,
-      $element: this.$element };
-    var audio = new Audio("sound/WPN_Pistol_AlienBlaster_Fire_Player_01.ogx");
+      $element: this.$element
+    };
+    var audio = new Audio("sound/laser4.ogg");
     audio.play();
     GAME_STATE.lasers.push(this.laser);
   }
@@ -30,8 +31,8 @@ export function Laser() {
       }
       this.setPosition(laser.$element, laser.x, laser.y);
     }
-    GAME_STATE.lasers = GAME_STATE.lasers.filter(e => !e.isDead);    
-  } 
+    GAME_STATE.lasers = GAME_STATE.lasers.filter(e => !e.isDead);
+  }
 }
 
 Laser.prototype = new GameElement();

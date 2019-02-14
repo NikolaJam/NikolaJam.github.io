@@ -6,10 +6,13 @@ export function GameElement() {
     this.destroyElement = function (element) {
         if (element) {
             element.$element.remove();
+             element.isDead = true;
         }
         else {
-            this.remove();
+            console.log("Player Destroyed");
+            var player=$(".player");
+            player.remove();
         }
-        element.isDead = true;
+       
     }
 }

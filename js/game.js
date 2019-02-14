@@ -1,20 +1,20 @@
 import { Player } from "/js/player.js";
 import { Enemies } from "/js/enemies.js";
-import { Player2 } from "/js/player2.js";
 
 export function Game() {
   var $container = $("#game");
 
   $(document).keypress((e) => {
     if (e.which == 50) {
-      this.player2 = new Player2($container);
+      this.player2 = new Player($container, PLAYER2);
       GAME_STATE.player2Created = true;
       $("header").html("Double Trouble");
+      $("footer").html("| Player1: A-left / D-right,  spacebar - weapon | Player2: leftArrow / rightArrow, num0/ins - weapon |");
     }
   });
 
   this.initialize = () => {
-    this.player = new Player($container);
+    this.player = new Player($container, PLAYER);
     this.enemy = new Enemies();
     this.player.initialize();
     this.enemy.initialize();
@@ -64,9 +64,9 @@ export function Game() {
 
           this.player.laser.destroyElement(GAME_STATE.lasers[laserNumber]);
           this.enemy.destroyElement(GAME_STATE.enemies[enemiesNumber]);
-          var explosion = new Audio("sound/space-explosion.wav");
+          var explosion = new Audio("sound/lowDown.ogg");
           explosion.play();
-          console.log("Intersect");
+          console.log("Enemy Destroyed");
           break;
         }
       }
@@ -84,8 +84,6 @@ export function Game() {
 
     if (GAME_STATE.playerisDead) {
       this.player.destroyElement();
-      var explosionPlayer = new Audio("sound/player-explod.wav");
-      explosionPlayer.play();
       this.gameOverProcedure();
       return;
     }

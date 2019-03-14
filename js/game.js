@@ -5,7 +5,7 @@ export function Game() {
   var $container = $("#game");
 
   $(document).keypress((e) => {
-    if (e.which == 50) {
+    if (e.which == 50&&!GAME_STATE.player2Created) {
       this.player2 = new Player($container, PLAYER2);
       GAME_STATE.player2Created = true;
       $("header").html("Double Trouble");

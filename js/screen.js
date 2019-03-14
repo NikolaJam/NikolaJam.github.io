@@ -36,23 +36,23 @@ function handleEnterTouch() {
     $("#victory").css("display", "none");
     $game.empty();
     screen();
-    GAME_STATE.spacePressed=true;
+    PLAYER.spacePressed=true;
 }
 
 function handleStartLeft() {
-    GAME_STATE.leftPressed = true;
+   PLAYER.leftPressed = true;
 }
 
 function handleEndLeft() {
-    GAME_STATE.leftPressed = false;
+   PLAYER.leftPressed = false;
 }
 
 function handleStartRight() {
-    GAME_STATE.rightPressed = true;
+   PLAYER.rightPressed = true;
 }
 
 function handleEndRight() {
-    GAME_STATE.rightPressed = false;
+   PLAYER.rightPressed = false;
 }
 
 function touchControls() {

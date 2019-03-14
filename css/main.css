@@ -20,13 +20,13 @@ body {
 .left {
   width: 50%;
   height: 900px;
-  background-color: rgba(255, 131, 127, 0.247);
+  background-color: rgba(255, 131, 127, 0);
 }
 
 .right {
   width: 50%;
   height: 900px;
-  background-color: rgba(0, 0, 255, 0.253);
+  background-color: rgba(0, 0, 255, 0);
 }
 
 .wrap {
